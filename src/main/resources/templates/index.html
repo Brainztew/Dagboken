@@ -7,11 +7,27 @@
 </head>
 <body>
     <h1>Dagboken!</h1>
+    <h2>Skapa dagboksinlägg</h2>
 
+<form method="post" th:object="${diary}" th:action="@{addDiaryPage}">
+    <label for="title">Titel:</label>
+    <input type="text" id="title" name="title" required><br>
+
+    <label for="text">Text:</label>
+    <textarea id="text" name="text"  required></textarea><br>
+
+    <label for="date">Datum:</label>
+    <input type="date" id="date" name="date"  required><br>
+
+    <button type="submit">Lägg in i dagbok!</button>
+</form>
+<h2>Dagens dagboksinlägg:</h2>
     <ul>
         <li th:each=" page : ${pages}">
-            <span th:text="${page.title}"></span>
-            <span th:text="${page.text}"></span>
+            <h3>Titel: <span th:text="${page.title}"></span></h3>
+            <h4>Innehåll: <span th:text="${page.text}"></span></h4>
+            <h4>Datum: <span th:text="${page.date}"></span></h4>
+            <a th:href="@{delete(id=${page.id})}"><button>[TA BORT MIG!]</button></a>
         </li>
     </ul>
 </body>
