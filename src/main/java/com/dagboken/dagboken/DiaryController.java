@@ -1,6 +1,7 @@
 package com.dagboken.dagboken;
 
-
+import java.sql.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,9 +23,21 @@ public class DiaryController {
         model.addAttribute("pages", diaryRepository.findMeToday());
         return "index";
     }
+   @GetMapping("/showBetweenDates")
+    public String showBetweenDates() {
+        return "showBetweenDates";
+    }
+
+    @PostMapping ("/showBetweenDates")
+    public String showBetweenDates(@RequestParam  Date startDate, 
+                                @RequestParam Date endDate, Model model) {
+        List<Diary> showBetweenDates = diaryRepository.findDiaryBetweenDates(startDate, endDate);
+        model.addAttribute("pages", showBetweenDates);
+        return "showBetweenDates";
+    }
 
     @GetMapping("/addDiaryPage")
-    public String createEntryForm(Model model) {
+    public String addDiaryPage(Model model) {
         model.addAttribute("diary", new Diary());
         return "diary";
     }
@@ -46,7 +59,6 @@ public class DiaryController {
     @PostMapping("/changeDiary/{id}")
     public String changeTitle(@PathVariable int id, @ModelAttribute Diary newDiary) {
         Diary findMe = diaryRepository.findById(id).orElse(null);
-
         if(findMe != null) {
             findMe.setTitle(newDiary.getTitle());
             findMe.setText(newDiary.getText());
@@ -54,10 +66,8 @@ public class DiaryController {
 
             diaryRepository.save(findMe);
         }
-        
         return "redirect:/showAll";
     }
-
 
     @GetMapping("/showAll")
     public String showAll(Model model) {

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visa mellan datum!</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>Visa dagboksinlägg mellan två datum!</h1>
+    <a href="/"><button>Hem!</button></a>
+
+    <form method="post" th:action="@{/showBetweenDates}">
+        <label for="startDate">Start Datum:</label>
+        <input type="date" id="startDate" name="startDate"  required><br>
+
+        <label for="endDate">Slut Datum:</label>
+        <input type="date" id="endDate" name="endDate"  required><br>
+        <button type="submit">Visa dagboksinlägg mellan datum!</button>
+    </form> 
+
+    <h2>Valda dagboksinlägg</h2>
+    <ul>
+        <li th:each=" page : ${pages}">
+            <h3>Titel: <span th:text="${page.title}"></span></h3>
+            <h4>Innehåll: <span th:text="${page.text}"></span></h4>
+            <h4>Datum: <span th:text="${page.date}"></span></h4>
+        </li>
+    </ul>
+</body>
+</html>
