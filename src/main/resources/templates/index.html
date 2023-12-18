@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dagboken</title>
 </head>
 <body>
     <h1>Dagboken!</h1>
+    <a href="/showAll"><button> Visa alla dagboksinlägg!</button></a>
     <h2>Skapa dagboksinlägg</h2>
 
 <form method="post" th:object="${diary}" th:action="@{addDiaryPage}">

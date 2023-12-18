@@ -14,7 +14,7 @@ public class DiaryController {
     @Autowired
     private DiaryRepository diaryRepository;
 
-    @GetMapping
+    @GetMapping ("/")
     public String getIndex(Model model) {
         model.addAttribute("pages", diaryRepository.findMeToday());
         return "index";
@@ -38,6 +38,18 @@ public class DiaryController {
        System.out.println("delete mapping: " + id);
        diaryRepository.deleteById(id);
        return "redirect:/";
+    }
+
+    @GetMapping("/showAll")
+    public String showAll(Model model) {
+        model.addAttribute("pages", diaryRepository.findAll());
+        return "showAll";
+    }
+
+    @GetMapping("/deleteAll")
+    public String deleteAll() {
+        diaryRepository.deleteAll();
+        return "redirect:/";
     }
 
 }

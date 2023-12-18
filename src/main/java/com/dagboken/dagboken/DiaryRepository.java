@@ -9,7 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface DiaryRepository extends CrudRepository<Diary, Integer>{
 
- List<Diary> findByDateBetween(LocalDate startDate, LocalDate endDate);
+List<Diary> findByDateBetween(LocalDate startDate, LocalDate endDate);
 
 @Query
 ("SELECT d FROM Diary d WHERE DATE(d.date) = CURRENT_DATE")

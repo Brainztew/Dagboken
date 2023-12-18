@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>showAll</title>
+</head>
+<body>
+    <h1>Visa alla dagboksinlägg!</h1>
+    <a href="/"><button>Hem!</button></a>
+    <a href="/deleteAll"><button>Ta bort alla inlägg!</button></a>
+    <ul>
+        <li th:each=" page : ${pages}">
+            <h3>Titel: <span th:text="${page.title}"></span></h3>
+            <h4>Innehåll: <span th:text="${page.text}"></span></h4>
+            <h4>Datum: <span th:text="${page.date}"></span></h4>
+            <a th:href="@{delete(id=${page.id})}"><button>[TA BORT MIG!]</button></a>
+        </li>
+    </ul>
+</body>
+</html>
