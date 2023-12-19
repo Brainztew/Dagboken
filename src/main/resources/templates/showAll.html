@@ -3,32 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>showAll</title>
+    <title>Alla inlägg</title>
     <link rel="stylesheet" href="style.css" />
-
 </head>
 <body>
-    <h1>Visa alla dagboksinlägg!</h1>
-    <a href="/"><button>Hem!</button></a>
-    <a href="/deleteAll"><button>Ta bort alla inlägg!</button></a>
+    <h1>Dagboken!</h1>
+    <div class="buttons">
+        <a href="/"><button class="Btnstyle">Hem</button></a>
+        <a href="/showBetweenDates"><button class="Btnstyle"> Visa mellan datum</button></a>
+        <a href="/showAll"><button class="Btnstyle"> Visa alla dagboksinlägg</button></a>
+        <a href="/deleteAll"><button class="Btnstyle">Ta bort alla inlägg</button></a>
+    </div>
     <ul>
         <li th:each=" page : ${pages}">
             <h3>Titel: <span th:text="${page.title}"></span></h3>
             <h4>Innehåll: <span th:text="${page.text}"></span></h4>
             <h4>Datum: <span th:text="${page.date}"></span></h4>
-            <a th:href="@{delete(id=${page.id})}"><button>[TA BORT MIG!]</button></a>
-
+ 
             <div>
                 <form method="post" th:object="${diary}" th:action="@{changeDiary/{id}(id=${page.id})}">
                     <input type="hidden" id="id" name="id" th:value="${page.id}" />
-                    <label for="title">Titel:</label>
+                    <label class="date" for="title">Titel:</label>
                     <input type="text" id="title" name="title" th:value="${page.title}" required><br>
-                    <label for="text">Text:</label>
+                    <label class="date" for="text">Text:</label>
                     <textarea id="text" name="text" required th:text="${page.text}"></textarea><br>
-                    <label for="date">Datum:</label>
+                    <label class="date" for="date">Datum:</label>
                     <input type="date" id="date" name="date" required th:value="${page.date}"><br>
-                    <button type="submit">Ändra inlägg!</button>
+                    <button class="Btnstyle" type="submit">ÄNDRA INLÄGG</button>
                 </form>
+                <a th:href="@{delete(id=${page.id})}"><button class="Btnstyle">TA BORT INLÄGG</button></a>
             </div>
         </ul>
 </body>

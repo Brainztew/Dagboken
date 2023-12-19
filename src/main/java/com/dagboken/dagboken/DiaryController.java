@@ -53,7 +53,7 @@ public class DiaryController {
 
        System.out.println("delete mapping: " + id);
        diaryRepository.deleteById(id);
-       return "redirect:/";
+       return "redirect:/showAll";
     }
 
     @PostMapping("/changeDiary/{id}")

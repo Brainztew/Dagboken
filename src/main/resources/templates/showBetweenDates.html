@@ -7,18 +7,23 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1>Visa dagboksinlägg mellan två datum!</h1>
-    <a href="/"><button>Hem!</button></a>
+    <h1>Dagboken!</h1>
+    <div class="buttons">
+        <a href="/"><button class="Btnstyle">Hem</button></a>
+        <a href="/showBetweenDates"><button class="Btnstyle"> Visa mellan datum</button></a>
+        <a href="/showAll"><button class="Btnstyle"> Visa alla dagboksinlägg</button></a>
+        <a href="/deleteAll"><button class="Btnstyle">Ta bort alla inlägg</button></a>
+    </div>
+    <div class="showBetweenDatesStyle">
+        <form method="post" th:action="@{/showBetweenDates}">
+            <label class="date" for="startDate">Start Datum:</label>
+            <input type="date" id="startDate" name="startDate"  required><br>
 
-    <form method="post" th:action="@{/showBetweenDates}">
-        <label for="startDate">Start Datum:</label>
-        <input type="date" id="startDate" name="startDate"  required><br>
-
-        <label for="endDate">Slut Datum:</label>
-        <input type="date" id="endDate" name="endDate"  required><br>
-        <button type="submit">Visa dagboksinlägg mellan datum!</button>
-    </form> 
-
+            <label class="date" for="endDate">Slut Datum:</label>
+            <input type="date" id="endDate" name="endDate"  required><br>
+            <button class="Btnstyle" type="submit">Visa dagboksinlägg mellan datum</button>
+        </form> 
+    </div>
     <h2>Valda dagboksinlägg</h2>
     <ul>
         <li th:each=" page : ${pages}">

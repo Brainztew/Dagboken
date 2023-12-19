@@ -1,0 +1,72 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: wheat;
+}
+
+h1 {
+color: crimson;
+background-color:  rgb(244, 230, 193);
+text-align: center;
+align-items: center;
+font-size: 80px;
+width: auto;
+height: 7rem;
+border-radius: 2rem;
+-webkit-text-stroke-width: 3px;
+-webkit-text-stroke-color: rgb(0, 0, 0);
+}
+h2 {
+    color: peru;
+    font-size: 30px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(112, 98, 98);
+}
+h3 {
+    color: peru;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(112, 98, 98);
+}
+
+h4 {
+    color: peru;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(112, 98, 98);
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.Btnstyle {
+    margin: 10px;
+    background-color: rgb(255, 241, 164);
+    border: none;
+    color: white;
+    font-size: 16px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(112, 98, 98);
+    padding: 20px 40px;
+    border-radius: 16px;
+}
+
+li {
+    background-color: rgb(244, 230, 193);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.1rem;
+    margin-bottom: 1rem;
+    list-style: none;
+    border-radius: 0.5rem;
+}
+
+.date {
+    
+    color: peru;
+    font-size: 26px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(112, 98, 98);
+}

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.thymeleaf.org">
-<head>
+<head class="header">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dagboken</title>
@@ -8,29 +8,32 @@
 </head>
 <body>
     <h1>Dagboken!</h1>
-    <a href="/showAll"><button> Visa alla dagboksinlägg!</button></a>
-    <a href="/showBetweenDates"><button> Visa mellan datum!</button></a>
+    <div class="buttons">
+        <a href="/"><button class="Btnstyle">Hem</button></a>
+        <a href="/showBetweenDates"><button class="Btnstyle"> Visa mellan datum</button></a>
+        <a href="/showAll"><button class="Btnstyle"> Visa alla dagboksinlägg</button></a>
+        <a href="/deleteAll"><button class="Btnstyle">Ta bort alla inlägg</button></a>
+    </div>
     <h2>Skapa dagboksinlägg</h2>
 
 <form method="post" th:object="${diary}" th:action="@{addDiaryPage}">
-    <label for="title">Titel:</label>
+    <label class="date" for="title">Titel:</label>
     <input type="text" id="title" name="title" required><br>
 
-    <label for="text">Text:</label>
+    <label class="date" for="text">Text:</label>
     <textarea id="text" name="text"  required></textarea><br>
 
-    <label for="date">Datum:</label>
+    <label class="date" for="date">Datum:</label>
     <input type="date" id="date" name="date"  required><br>
 
-    <button type="submit">Lägg in i dagbok!</button>
+    <button class="Btnstyle" type="submit">Lägg in i dagbok</button>
 </form>
 <h2>Dagens dagboksinlägg:</h2>
     <ul>
         <li th:each=" page : ${pages}">
-            <h3>Titel: <span th:text="${page.title}"></span></h3>
-            <h4>Innehåll: <span th:text="${page.text}"></span></h4>
-            <h4>Datum: <span th:text="${page.date}"></span></h4>
-            <a th:href="@{delete(id=${page.id})}"><button>[TA BORT MIG!]</button></a>
+            <h3>Titel:      <span th:text="${page.title}"></span></h3>
+            <h4>Innehåll:   <span th:text="${page.text}"></span></h4>
+            <h4>Datum:      <span th:text="${page.date}"></span></h4>
         </li>
     </ul>
 </body>
