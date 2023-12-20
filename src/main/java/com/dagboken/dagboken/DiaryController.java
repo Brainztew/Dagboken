@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -69,9 +70,30 @@ public class DiaryController {
         return "redirect:/showAll";
     }
 
+        @PostMapping("/changeDiaryBetweenDates/{id}")
+    public String changeDiaryBetweenDates(@PathVariable int id, @ModelAttribute Diary newDiary) {
+        Diary findMe = diaryRepository.findById(id).orElse(null);
+        if(findMe != null) {
+            findMe.setTitle(newDiary.getTitle());
+            findMe.setText(newDiary.getText());
+            findMe.setDate(newDiary.getDate());
+
+            diaryRepository.save(findMe);
+        }
+        return "redirect:/showBetweenDates";
+    }
+
+    @GetMapping("/deleteBetweenDates")
+    public String deleteBetweenDates(@RequestParam int id) {
+       diaryRepository.deleteById(id);
+       return "redirect:/showBetweenDates";
+    }
+
     @GetMapping("/showAll")
     public String showAll(Model model) {
-        model.addAttribute("pages", diaryRepository.findAll());
+        Sort sort = Sort.by(Sort.Direction.ASC, "date");
+        List<Diary> sorted = diaryRepository.findAll(sort);
+        model.addAttribute("pages", sorted);
         return "showAll";
     }
 
@@ -80,5 +102,4 @@ public class DiaryController {
         diaryRepository.deleteAll();
         return "redirect:/";
     }
-
 }

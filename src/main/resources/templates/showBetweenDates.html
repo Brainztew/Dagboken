@@ -30,6 +30,19 @@
             <h3>Titel: <span th:text="${page.title}"></span></h3>
             <h4>Innehåll: <span th:text="${page.text}"></span></h4>
             <h4>Datum: <span th:text="${page.date}"></span></h4>
+            <div>
+                <form method="post" th:object="${diary}" th:action="@{changeDiaryBetweenDates/{id}(id=${page.id})}">
+                    <input type="hidden" id="id" name="id" th:value="${page.id}" />
+                    <label class="date" for="title">Titel:</label>
+                    <input type="text" id="title" name="title" th:value="${page.title}" required><br>
+                    <label class="date" for="text">Text:</label>
+                    <textarea id="text" name="text" required th:text="${page.text}"></textarea><br>
+                    <label class="date" for="date">Datum:</label>
+                    <input type="date" id="date" name="date" required th:value="${page.date}"><br>
+                    <button class="Btnstyle" type="submit">ÄNDRA INLÄGG</button>
+                </form>
+                <a th:href="@{deleteBetweenDates(id=${page.id})}"><button class="Btnstyle">TA BORT INLÄGG</button></a>
+            </div>
         </li>
     </ul>
 </body>
