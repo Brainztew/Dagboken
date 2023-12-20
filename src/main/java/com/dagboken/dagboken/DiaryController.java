@@ -91,7 +91,7 @@ public class DiaryController {
 
     @GetMapping("/showAll")
     public String showAll(Model model) {
-        Sort sort = Sort.by(Sort.Direction.ASC, "date");
+        Sort sort = Sort.by(Sort.Direction.DESC, "date");
         List<Diary> sorted = diaryRepository.findAll(sort);
         model.addAttribute("pages", sorted);
         return "showAll";
